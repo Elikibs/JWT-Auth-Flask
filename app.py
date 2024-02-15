@@ -1,7 +1,7 @@
 from flask import Flask, jsonify
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
-from models import db, User
+from models import db, User, TokenBlocklist
 from auth import auth_bp
 from users import user_bp
 
@@ -66,6 +66,17 @@ def missing_token_callback(error):
             "error": "authorization_header"
         }
     ), 401
+
+
+# revoking tokens >> logout
+@jwt.token_in_blocklist_loader
+def token_in_blocklist_callback(jwt_header, jwt_data):
+    jti = jwt_data['jti']
+    
+    token = db.session.query(TokenBlocklist).filter(TokenBlocklist.jti == jti).scalar()
+
+    return token is not None
+
 
 
 
