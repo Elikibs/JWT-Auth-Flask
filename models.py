@@ -14,3 +14,26 @@ class User(db.Model):
 
     def __repr__(self):
         return f"<User {self.username}"
+    
+    # set hash password
+    def set_password(self, password):
+        self.password = generate_password_hash(password)
+    
+    # check if password is correct >> login
+    def check_password(self, password):
+        return check_password_hash(self.password, password)
+    
+    # check if user exists
+    @classmethod
+    def get_user_by_username(cls, username):
+        return cls.query.filter_by(username=username).first()
+    
+    # save user
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    # delete user
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
