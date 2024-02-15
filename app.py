@@ -20,6 +20,22 @@ db.init_app(app)
 app.register_blueprint(auth_bp, url_prefix='/auth')
 app.register_blueprint(user_bp, url_prefix='/users')
 
+
+# load user
+@jwt.user_lookup_loader
+def user_looup_callback(jwt_header, jwt_data):
+    identity = jwt_data['sub']
+    return User.query.filter_by(username=identity).one_or_none()
+
+
+# add additional claims
+@jwt.additional_claims_loader
+def make_additional_claims(identity):
+    if identity == "johndoe":
+        return {"is_staff": True}
+    return {"is_staff": False}
+
+
 # jwt error handlers
 # expired token handler
 @jwt.expired_token_loader
