@@ -38,6 +38,7 @@ class User(db.Model):
         db.session.delete(self)
         db.session.commit()
 
+# Stores the revoked tokens
 class TokenBlocklist(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     jti = db.Column(db.String, nullable=True)
