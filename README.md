@@ -1,1 +1,1 @@
-# JWT Authentication/Authoriza with Flask
+# JWT Authentication/Authorization with Flask
