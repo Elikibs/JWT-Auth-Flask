@@ -4,6 +4,7 @@ from models import User, TokenBlocklist
 
 auth_bp = Blueprint('auth', __name__)
 
+# signup/register endpoint
 @auth_bp.post('/register')
 def register_user():
     data = request.get_json()
