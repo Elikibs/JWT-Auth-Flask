@@ -23,6 +23,7 @@ def register_user():
 
     return jsonify({"message": "User created successfully"}), 201
 
+# login endpoint
 @auth_bp.post('/login')
 def login_user():
      data = request.get_json()
