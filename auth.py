@@ -59,7 +59,7 @@ def whoami():
         }
     )
 
-#refresh expired token
+# refresh expired token
 @auth_bp.get('/refresh')
 @jwt_required(refresh=True)
 def refresh_access():
