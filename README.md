@@ -1,5 +1,5 @@
 # JWT Authentication/Authorization with Flask
 ## Set up
 ## Author
-Authored by 
+Authored by Elisha
 ## License
