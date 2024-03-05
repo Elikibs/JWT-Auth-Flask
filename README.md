@@ -3,3 +3,4 @@
 ## Author
 Authored by Elisha Kibet
 ## License
+MIT license
